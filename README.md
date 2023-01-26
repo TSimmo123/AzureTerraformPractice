@@ -2,4 +2,4 @@
 A repository for practicing provisioning an Azure environment using Terraform
 
 
-Updating ReadMe file.
+Updating ReadMe file v2.
