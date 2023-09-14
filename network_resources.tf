@@ -52,6 +52,25 @@ resource "azurerm_subnet_network_security_group_association" "NSG-association" {
 
 }
 
+resource "azurerm_public_ip" "publicip" {
+  name                = "publicip"
+  location            = azurerm_resource_group.azure-terraform-dev.location
+  resource_group_name  = azurerm_resource_group.azure-terraform-dev.name
+  allocation_method   = "Static"
+  sku                 = "Standard"
+}
+
+resource "azurerm_bastion_host" "Bastion-host" {
+  name                = "examplebastion"
+  location            = azurerm_resource_group.azure-terraform-dev.location
+  resource_group_name  = azurerm_resource_group.azure-terraform-dev.name
+
+  ip_configuration {
+    name                 = "configuration"
+    subnet_id            = azurerm_subnet.subnet1.id
+    public_ip_address_id = azurerm_public_ip.publicip.id
+  }
+}
 
 
 
