@@ -10,7 +10,7 @@ resource "azurerm_network_interface" "NIC" {
 
   ip_configuration {
     name                          = "testconfig1"
-    subnet_id                     = azurerm_subnet.subnet1.id
+    subnet_id                     = azurerm_subnet.example.id
     private_ip_address_allocation = "Dynamic"
   }
 }
