@@ -2,7 +2,7 @@
 
 # Network Interface Card
 
-resource "azurerm_network_interface" "Nic1" {
+resource "azurerm_network_interface" "NIC" {
   name                = "Nic${count.index + 1}"
   count = 2
   location            = azurerm_resource_group.azure-terraform-dev.location
@@ -23,7 +23,7 @@ resource "azurerm_virtual_machine" "VM" {
   count                 = 2
   location              = azurerm_resource_group.azure-terraform-dev.location
   resource_group_name   = azurerm_resource_group.azure-terraform-dev.name
-  network_interface_ids = [azurerm_network_interface.Nic1[count.index].id]
+  network_interface_ids = [azurerm_network_interface.NIC[count.index].id]
   vm_size               = "Standard_DS1_v2"
 
   storage_image_reference {
